@@ -15,7 +15,7 @@ import br.silva.io.social.hub.vo.UserVO;
  * Entity implementation class for Entity: User
  *
  */
-@Entity
+@Entity(name = "social_user")
 public class User implements Serializable {
 	
 	private static final long serialVersionUID = 1L;

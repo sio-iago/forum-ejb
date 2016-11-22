@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="description" content="Distributed Forum">
+<meta name="author" content="Iago Oliveira da Silva">
+
+<title>Social Hub - Timeline</title>
+
+<!-- Bootstrap core CSS -->
+<link href="resources/css/bootstrap.min.css" rel="stylesheet">
+
+
+<!-- Custom styles for this template -->
+<link href="resources/css/timeline.css" rel="stylesheet">
+
+<script type="text/javascript" src="resources/js/routes.js"></script>
+<script type="text/javascript" src="resources/js/jquery.min.js"></script>
+<script type="text/javascript" src="resources/js/jquery.serializer.js"></script>
+<script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="resources/js/common.js"></script>
+<script type="text/javascript" src="resources/js/timeline.js"></script>
+
+<script>verifyLoggedUser();</script>
+
+</head>
+
+<body>
+
+	<div class="container">
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-info">
+					<div class="panel-heading">
+						<h3>Social Hub</h3>
+					</div>
+					<div class="panel-body">
+						<a class="btn btn-sm btn-success" data-toggle="modal" data-target="#newPostModal">New Post</a>
+						<a href="javascript:void(0)" onclick="updateTimeline()" class="btn btn-sm btn-default">Refresh</a>
+						<a href="javascript:void(0)" onclick="doLogout()" class="btn btn-sm btn-danger">Logout</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-lg-12" id="messages">
+			</div>
+		</div>
+		
+		<div class="row" id="timeline">
+		</div>
+		
+		<div class="row">
+			<div class="col-lg-12">
+				<a href="javascript:void(0)" onclick="showMorePosts()" class="btn btn-info">Load More</a>
+			</div>
+		</div>
+		
+	</div>
+	<!-- /container -->
+
+
+	<div id="newPostModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+	
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">New Post</h4>
+	      </div>
+	      <div class="modal-body">
+	        <form id="newPostForm">
+	        	<div class="form-group">
+	        		<label>Title</label>
+	        		<input type="text" name="title" class="form-control" placeholder="Some cool title..."/>
+	        	</div>
+	        	
+	        	<div class="form-group">
+	        		<label>Description</label>
+	        		<textarea class="editArea" name="description" rows="8" placeholder="Some cool text goes here..."></textarea>
+	        	</div>
+	        </form>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" onclick="emitSuccess('Post canceled')" data-dismiss="modal">Cancel</button>
+	        <button type="button" class="btn btn-success" onclick="createPost()" data-dismiss="modal">Post</button>
+	      </div>
+	    </div>
+	
+	  </div>
+	</div>
+	
+
+<script>
+	$(document).ready(queryData());
+</script>
+
+</body>
+
+</html>
+
