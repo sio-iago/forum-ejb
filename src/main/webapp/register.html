@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="Distributed Forum">
+    <meta name="author" content="Iago Oliveira da Silva">
+
+    <title>Forum Sign up</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="resources/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- Custom styles for this template -->
+    <link href="resources/css/login.css" rel="stylesheet">
+
+	<script type="text/javascript" src="resources/js/jquery.min.js"></script>
+	<script type="text/javascript" src="resources/js/jquery.serializer.js"></script>
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <form id="registerForm" class="form-signin" onsubmit="">
+        <h2 class="form-signin-heading">Sign up here!</h2>
+        <label for="inputEmail" class="sr-only">E-mail</label>
+        <input type="text" name="email" id="inputEmail" class="form-control" placeholder="silva.io@outlook.com" required autofocus>
+        <label for="inputUsername" class="sr-only">Username</label>
+        <input type="text" name="username" id="inputUsername" class="form-control" placeholder="silva.io" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <a onclick="doRegister()" class="btn btn-lg btn-default btn-block" type="submit">Sign up</a>
+        
+        <br>
+			<p style="text-align: center; font-size: 1.5em">Or</p>
+			
+			<a class="btn btn-lg btn-success btn-block" href="login.html" type="submit">Sign in</a>
+        
+      </form>
+
+    </div> <!-- /container -->
+
+<script>
+function doRegister() {
+	var reqObject = $('#registerForm').serializeObject();
+	$.ajax({
+        type: "POST",
+        //the url where you want to sent the userName and password to
+        url: 'rest/auth/register',
+        contentType : 'application/json',
+        async: false,
+        //json object to sent to the authentication url
+        data: JSON.stringify(reqObject),
+        success: function (result) {
+        	window.localStorage.user = result; 
+
+        	if(result.sessionKey !== undefined)
+            	window.localStorage.Authorization = result.sessionKey;;
+        }
+    });
+}
+</script>
+
+  </body>
+</html>
+
